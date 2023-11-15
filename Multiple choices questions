@@ -1,0 +1,73 @@
+#quiz
+def n_game():
+    guesses = []#An list
+    correct_guess=0
+    quest_num=1
+
+    
+    for key in question:#for printing of questions in dictionary named question
+        print(key)
+        for  i in answer[quest_num-1]:#for answer of questions in lists named answer
+            print(i)
+            
+        guess=input("Enter the answer (A),(B),(C)or(D) :")
+        guess=guess.upper()
+        guesses.append(guess)
+        correct_guess += check_answer(question.get(key),guess)
+        quest_num += 1
+    
+    display_score(correct_guess,guesses)   
+    
+def check_answer(answer,guess):
+        
+    if answer == guess:
+        print("Correct")
+        return 1
+    else:
+        print("Wrong")
+        return  0
+
+def display_score(correct_guess,guesses):
+
+    print("RESULT")
+
+    print("Answers:",end="")
+    for i in question:
+         print(question.get(i),end="")
+    print()
+
+    print("Guesses:",end="")
+    for i in guesses:
+         print(i,end="")
+    print()
+
+    score= int((correct_guess/len(question))*100)
+    print("Your score is :"+str(score) +"%")
+
+
+def play_again():
+    again=input("Do you wanna play again? (Y/N)").upper()
+    if again == "Y":
+        return True
+    else:
+      return False
+
+
+
+
+question={
+            "Which one of these is German brand?" : "D",
+            "Which one of these is Indian brand?" : "B",
+            "Which one of these is AWD?" : "C",
+            "Which one these is part of BMW" : "A"
+              }
+answer=[["A. Hyundai","B. Toyota","C. Mahindra","D. Mercedes"],
+            ["A. Toyota","B. TATA","C. Mclaren","D. Lambhorghini"],
+            ["A. Harrier","B. SAFARI","C. XUV700","D. THAR"],
+            ["A. X7","B. MAYBACH","C. AMG","D. URUS"]]
+n_game()
+
+while play_again():
+    n_game()
+
+print("BYE!")
